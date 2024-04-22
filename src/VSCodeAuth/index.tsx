@@ -118,21 +118,17 @@ export default function VSCodeAuth() {
           Didn&apos;t open VS Code?
         </Box>
         <Box pt={2} display="flex">
-              <Button
-                      color="primary"
-                      variant="contained"
-                      onClick={() => {
-                          if (vscodeURL) {
-                          window.location.href = vscodeURL.toString();
-                          }
-                      }}
-                      >
-                      Open Visual Studio Code 
-                      {/* <FormattedMessage
-                          id="app.project.component.packges.button.xxxx"
-                          defaultMessage="Launch Visual Studio Code"
-                      /> */}
-          </Button>
+        <Button
+                style={{ backgroundColor: '#EE7A30', color: '#fff' }}
+                variant="contained"
+                onClick={() => {
+                  if (vscodeURL) {
+                    window.location.href = vscodeURL.toString();
+                  }
+                }}
+              >
+                Open Visual Studio Code 
+        </Button>
         </Box>
       </Box>
     );
