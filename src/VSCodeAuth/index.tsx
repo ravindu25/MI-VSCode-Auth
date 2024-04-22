@@ -21,8 +21,10 @@ import React from 'react';
 const useStyles = makeStyles({
   logoImgFullWidth: {
     display: 'block',
-    width: '100%',
+    width: '20%',
     maxWidth: '100%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
 });
 
@@ -64,64 +66,77 @@ export default function VSCodeAuth() {
     }
     console.log("VS Code URL: ", vscodeURL);
   }, [vscodeURL]);
-
-  return (
-    <Box
-      pt="8%"
-      flexDirection="column"
-      justifyContent="flex-start"
-      alignItems="center"
-      height={1}
-      display="flex"
-    >
-      <CssBaseline />
-      <Box display="flex">
-        <Link component={RouterLink} to="/">
-          {/* <img
-            className={classes.logoImgFullWidth}
-            src={choreoLogoBlack}
-            alt="Choreo Logo"
-          /> */}
-          <h1>MI VS Code Auth</h1>
-        </Link>
-      </Box>
+  if (!oauthCode || !state) {
+    return (
       <Box
-        pt="7%"
+        pt="8%"
+        flexDirection="column"
+        justifyContent="flex-start"
+        alignItems="center"
+        height={1}
         display="flex"
-        fontWeight="fontWeightBold"
-        fontSize="h2.fontSize"
       >
-        Success!
+        <CssBaseline />
+        <h1>Invalid Request</h1>
+        <p>Please provide a valid OAuth code and state.</p>
       </Box>
-      <Box textAlign="center" display="flex" fontSize="subtitle1.fontSize">
-        Authorization was successful. You will be redirected back to Visual
-        Studio Code
-      </Box>
-      <Box pt={5} display="flex" fontSize="subtitle1.fontSize">
-        Didn&apos;t open VS Code?
-      </Box>
-      <Box pt={2} display="flex">
-            <Button
-                    color="primary"
-                    variant="contained"
-                    onClick={() => {
-                        if (vscodeURL) {
-                        window.location.href = vscodeURL.toString();
-                        }
-                    }}
-                    >
-                    Open Visual Studio Code 
-                    {/* <FormattedMessage
-                        id="app.project.component.packges.button.xxxx"
-                        defaultMessage="Launch Visual Studio Code"
-                    /> */}
-        </Button>
-      </Box>
-    </Box>
-  );
+    );
+  }else{
+    return (
+      <Box
+        pt="8%"
+        flexDirection="column"
+        justifyContent="flex-start"
+        alignItems="center"
+        height={1}
+        display="flex"
+      >
+        <CssBaseline />
+        <Box display="flex">
+  
+            <img
+              className={classes.logoImgFullWidth}
+              src="https://wso2.cachefly.net/wso2/sites/all/2023/images/micro-integrator-logo.webp"
+              alt="Choreo Logo"
+            />
 
-  // return (
-  //   <h1>MI VS Code Auth</h1>
-  // );
+
+        </Box>
+        <Box
+          pt="7%"
+          display="flex"
+          fontWeight="fontWeightBold"
+          fontSize="h2.fontSize"
+        >
+          Success!
+        </Box>
+        <Box textAlign="center" display="flex" fontSize="subtitle1.fontSize">
+          Authorization was successful. You will be redirected back to Visual
+          Studio Code
+        </Box>
+        <Box pt={5} display="flex" fontSize="subtitle1.fontSize">
+          Didn&apos;t open VS Code?
+        </Box>
+        <Box pt={2} display="flex">
+              <Button
+                      color="primary"
+                      variant="contained"
+                      onClick={() => {
+                          if (vscodeURL) {
+                          window.location.href = vscodeURL.toString();
+                          }
+                      }}
+                      >
+                      Open Visual Studio Code 
+                      {/* <FormattedMessage
+                          id="app.project.component.packges.button.xxxx"
+                          defaultMessage="Launch Visual Studio Code"
+                      /> */}
+          </Button>
+        </Box>
+      </Box>
+    );
+  }
+  
 }
 
